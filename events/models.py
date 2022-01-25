@@ -14,10 +14,8 @@ class EventCategory(models.Model):
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status_choice = (
-        ('disabled', 'Disabled'),
         ('active', 'Active'),
         ('deleted', 'Deleted'),
-        ('blocked', 'Blocked'),
         ('completed', 'Completed'),
     )
     status = models.CharField(choices=status_choice, max_length=10)
@@ -37,31 +35,31 @@ class JobCategory(models.Model):
 class Event(models.Model):
     category = models.ForeignKey(EventCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
-    uid = models.PositiveIntegerField(unique=True)
+    #uid = models.PositiveIntegerField(unique=True)
     description = RichTextUploadingField()
-    job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    #job_category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     select_scheduled_status = (
         ('yet to scheduled', 'Yet to Scheduled'),
         ('scheduled', 'Scheduled')
     )
-    scheduled_status = models.CharField(max_length=25, choices=select_scheduled_status)
-    venue = models.CharField(max_length=255)
+    #scheduled_status = models.CharField(max_length=25, choices=select_scheduled_status)
+    #venue = models.CharField(max_length=255)
     start_date = models.DateField()
     end_date = models.DateField()
-    location = LocationField()
-    points = models.PositiveIntegerField()
-    maximum_attende = models.PositiveIntegerField()
+    #location = LocationField()
+    #points = models.PositiveIntegerField()
+    #maximum_attende = models.PositiveIntegerField()
     created_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True, related_name='event_created_user')
     updated_user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True, related_name='event_updated_user')
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateField(auto_now_add=True)
     status_choice = (
-        ('disabled', 'Disabled'),
+        
         ('active', 'Active'),
         ('deleted', 'Deleted'),
-        ('time out', 'Time Out'),
+        
         ('completed', 'Completed'),
-        ('cancel', 'Cancel'),
+        
     )
     status = models.CharField(choices=status_choice, max_length=10)
 
